@@ -1,0 +1,14 @@
+docker container run -d -p 3306:3306 --name db -e MYSQL_RANDOM__ROOT_PASSWORD=yes mysql
+docker container logs db
+docker container run -d --name webserver -p 8080:80 httpd
+docker ps
+docker container run -d --name proxy -p 80:80 nginx
+docker ps
+docker container ls
+curl localhost
+curl localhost:8080 // test the ports
+docker container stop <container id all 3>
+docker ps -a
+docker container rm <container id all 3>
+doker ps -a 
+docker image ls

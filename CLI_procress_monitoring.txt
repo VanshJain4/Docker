@@ -1,0 +1,7 @@
+docker container run -d --name nginx nginx
+docker container run -d --name mysql -e MYSQL_RANDOM__ROOT_PASSWORD=yes mysql
+docker ps
+docker container top mysql //process running inside the container
+docker container top nginx 
+docker container inspect mysql //way to look at how the container is configured upon its starting
+docker container stats // show live performance data for all containers
