@@ -1,0 +1,13 @@
+docker run --name mongo -d mongo
+docker ps
+docker top mongo
+ps aux
+docker stop mongo
+docker ps
+docker top mongo
+ps aux
+ps aux | grep mongo
+docker start mongo
+docker ps
+docker top mongo
+ps aux | grep mongo
