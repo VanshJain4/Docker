@@ -1,0 +1,6 @@
+docker container run -p 80:80 --name webhost -d nginx
+docker container post webhost
+// format -> format the outputs of command using go templates
+docker container inspect --format "{{ .NetworkSettings.IPAddress }}" webhost
+ifconfig en0 //different ip compared to mac
+//docker flow and firewalls -> how docker newtworks moves packet in and out

@@ -1,0 +1,24 @@
+docker container run -d --name nginx nginx
+docker container run -d --name mysql -e MYSQL_RANDOM__ROOT_PASSWORD=yes mariadb
+//-t simulates a real terminal, like what SSH does
+//-i Keep session open to receive terminal input
+docker containr run -it --name proxy nginx bash // bash->if run with -it, it will give you a terminal inside the running container
+ls -al //inside the container
+exit
+docker container ls
+docker container ls -a
+// Ububtu->Its default CMD is bash, so we don't have to specify it
+docker container run -it --name ubuntu ubuntu
+apt-get update
+apt-get install - curl
+curl google.com
+exit
+docker container start -ai ubuntu // without overwritting curl or whaterver is installed before hand
+docker containre exec -it mysql bash // Run additional process in running container
+apt-get update && apt-get install - y procps
+ps aux
+docker container ls
+//alpine linux -> A small security-focused distribution
+docker pull alpine
+docker image ls //look at the size
+docker containr run -it nginx sh
