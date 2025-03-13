@@ -1,0 +1,22 @@
+//cli testing
+//first terminal
+docker continer run --rm --it centos:7 bash
+yum update curl
+curl --version
+
+
+//second terminal
+docker continer run --rm --it ubuntu:14.04 bash
+apt_get update && apt-get install -y curl
+curl --version
+
+
+//round robin testing
+docker network create dude
+docker continer run -d --net dude --netwrok-alias search elasticsearch:2
+docker continer run -d --net dude --netwrok-alias search elasticsearch:2
+
+docker ps
+docker container run --rm --net dude alpine nslookup search
+docker container run --rm --net dude centos curl -s search:9200
+docker container run --rm --net dude centos curl -s search:9200

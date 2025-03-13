@@ -1,0 +1,27 @@
+docker image ls
+dokcer pull nginx
+docker pull nginx:1.11.9
+// will have the same image id
+docker image ls
+
+
+docker nginx history
+//shows layer of changes made in image
+docker mysql history
+docker image inspect nginx
+//return json metadata about the image
+
+
+docker image tag
+docker image ls
+dcoker pull mysql/mysql-server
+docker image ls
+dokcer image tag nginx VanshJain4/nginx
+docker image ls
+docker image push VanshJain4/nginx
+docker login
+cat .docker/config.json
+docker image push VanshJain4/nginx
+
+
+
