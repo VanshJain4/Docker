@@ -33,3 +33,18 @@ docker image build -t customnginx .
 docker image ls
 // docker uses cache so it knows what command has been run before and if no change are made in that line, that command is not run
 // thats is why the order of code matters, keep the thing that you change less at the top of the docker file
+
+
+// there is another dockfile under the name of dockerfile_2 folder
+cd dockerfile_2  
+ll
+docker container run -p 80:80 -rm nginx
+docker image build -t nginx-with-html .
+docker container run -p 80:80 --rm nginx-with-html
+//open localhost on the browser
+docker image ls
+docker image tag nginx-with-html:latest VanshJain4/nginx-with-html:latest
+docker image push VanshJain4/nginx-with-html:latest
+
+
+
