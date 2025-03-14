@@ -1,0 +1,9 @@
+cd dockerfile_3
+ll
+vim Dockerfile
+docker build -t testnode .
+docker container run --rm -p 80:3000 testnode
+docker image ls
+docker tag testnode Vanshjain4/testing-node
+docker push Vanshjain4/testing-node
+docker image ls
