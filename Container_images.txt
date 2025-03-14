@@ -24,4 +24,12 @@ cat .docker/config.json
 docker image push VanshJain4/nginx
 
 
-
+//there is a dockerfile created under the name of dockerfile_1 folder
+cd dockerfile_1
+ll
+vim dockerfile
+ll
+docker image build -t customnginx .
+docker image ls
+// docker uses cache so it knows what command has been run before and if no change are made in that line, that command is not run
+// thats is why the order of code matters, keep the thing that you change less at the top of the docker file
