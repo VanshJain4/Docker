@@ -1,0 +1,29 @@
+docker pull mysql
+docker image inspect mysql
+docker container run -d --name mysql -e MYSQL_RANDOM__ROOT_PASSWORD=yes mysql
+docker container inspect mysql
+// look for the volume command in the output
+// it is where the data is stored
+//you have to manually remove the volume, it wont delete itself after you remove the container
+docker volume ls
+docker volume inspect <volume name>
+docker container stop
+socker container ls
+docker container ls -a
+docker volume ls
+docker container rm mysql
+docker volume ls
+// outlive the container
+
+docker container run -d --name mysql -e MYSQL_RANDOM__ROOT_PASSWORD=yes -v mysql-db:/var/lib/mysql mysql
+docker volume ls
+docker volume inspect mysql-db
+docker container rm -f mysql
+docker volume ls
+docker container run -d --name mysql -e MYSQL_RANDOM__ROOT_PASSWORD=yes -v mysql-db:/var/lib/mysql mysql
+docker volume ls
+
+//you can also create volumes ahead of time
+// only way you can specify a driver
+docker volume create --help
+

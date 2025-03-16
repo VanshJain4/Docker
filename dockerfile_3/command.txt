@@ -4,6 +4,6 @@ vim Dockerfile
 docker build -t testnode .
 docker container run --rm -p 80:3000 testnode
 docker image ls
-docker tag testnode Vanshjain4/testing-node
-docker push Vanshjain4/testing-node
+docker tag testnode vanshjain4/testing-node
+docker push vanshjain4/testing-node
 docker image ls
