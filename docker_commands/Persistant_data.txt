@@ -27,3 +27,13 @@ docker volume ls
 // only way you can specify a driver
 docker volume create --help
 
+//bind mounting -> maps a host file or directry to the container file or directory
+cd dockerfile_4
+ll
+pcat Dockerfile
+docker container run -d --name nginx -p 80:80 -v $(pwd):/usr/share/nginx/html nginx
+// you can open the commadline ro the browser and see as you make changes here, it will be reflected there
+//For docker run, and the forthcoming Docker Compose sections, you need to either set a password with the environment variable:
+//POSTGRES_PASSWORD=mypasswd
+//Or tell it to ignore passwords with the environment variable:
+//POSTGRES_HOST_AUTH_METHOD=trust
