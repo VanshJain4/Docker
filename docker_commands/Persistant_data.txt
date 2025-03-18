@@ -37,3 +37,20 @@ docker container run -d --name nginx -p 80:80 -v $(pwd):/usr/share/nginx/html ng
 //POSTGRES_PASSWORD=mypasswd
 //Or tell it to ignore passwords with the environment variable:
 //POSTGRES_HOST_AUTH_METHOD=trust
+
+docker volume create psql
+docker run -d --name psql1 -e POSTGRES_PASSWORD=mypassword -v psql:/var/lib/postgresql/data postgres:15.1
+docker logs psql1
+docker stop psql1
+docker run -d --name psql2 -e POSTGRES_PASSWORD=mypassword -v psql:/var/lib/postgresql/data postgres:15.2
+docker logs psql2
+docker stop psql2
+
+docker container run -d --name psql -v psql:/var/lib/postgresql/data postgrees:9.6.1
+docker container logs -f psql
+docker container stop psql
+docker container run -d --name psql2 -v psql:/var/lib/postgresql/data postgrees:9.6.2
+docker container ls -a
+docker volume ls
+docker container logs -f psql2
+//the log will be small indicating that you have updated the system without losing any content

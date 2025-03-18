@@ -1,0 +1,2 @@
+docker run -p 80:4000 -v $(pwd):/site vanshjain4/jekyll-server
+// thats it now if you change somethign in your posts folder it will reflect on your browser
