@@ -1,0 +1,35 @@
+//entrypoint is a runtime and overwrite command
+docker run busybox
+//it immediately exits the command
+docker inspect busybox
+
+//cmd is sh and entrypoint is null meaninng we need to do it to start the container
+docker run -it busybox
+ps
+ls /bin
+hostname
+date
+exit
+
+//look at dockerfile 6
+//go to the directory
+docker build -t hostname .
+docker run hostname
+docker run hostname date
+
+//now go ahead and replace cmd with entrypoint
+docker build -t entryhostname .
+docker run entryhostname
+docker run entryhostnamehostname date // shows an error , diff between cmd and entrypoint
+docker run --entrypoint date entryhostname
+
+////////////
+
+// entrypoint and cmd together
+see dockerfile 6 -> .
+docker run --name myshell -it mysql sh
+//these are shell tricks cause if you open the container in another termianl it will show the shell working and entrypoint doesnt raise any unwanted errors
+
+
+
+
