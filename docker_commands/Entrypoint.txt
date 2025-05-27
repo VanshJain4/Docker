@@ -11,13 +11,13 @@ hostname
 date
 exit
 
-//look at dockerfile 6
+//look at dockerfile 6              
 //go to the directory
-docker build -t hostname .
+docker build -t hostname . 
 docker run hostname
-docker run hostname date
-
-//now go ahead and replace cmd with entrypoint
+docker run hostname date 
+ 
+//now go ahead and replace cmd with entrypoint, a
 docker build -t entryhostname .
 docker run entryhostname
 docker run entryhostnamehostname date // shows an error , diff between cmd and entrypoint
