@@ -1,0 +1,11 @@
+we can easily deploy containers everywhere and on anyones hardware
+how do we contorl our container across many servers or instances
+automate container lifecycle--
+how can we easily scalr out.in.up.downhow can we ensure our containers are recreated if they fail
+how can we replace containers without downtime
+how can er control track where containers get started
+how can we create cross node virtual networks
+how can we store private info..
+
+solution:swarm mode
+swarm mode is a clustering solution built inside docker

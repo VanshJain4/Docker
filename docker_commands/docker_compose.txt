@@ -1,0 +1,29 @@
+dockerile _8
+configure relationship between containers
+save out docker container run settings in easy to read file
+create one liner developer environment startups
+
+2 parts of compose
+1. yml -> list all containers, solution, networks, volumes
+2. cli tool docker-compose -> test automation and stuff
+
+docker-compose2.yml and the conf file are linked in this
+just simply 
+docker compose up 
+and it should do everything that needs to be done
+you will directly see all the logs on you terminal
+docker compose ps
+docker compose top
+docker compose down
+
+for docker-compose5 also add -v at the end to remove all the volumes as well
+
+compose can build images at runtime
+using the up command
+great for complex builds that have alot of vars or build args
+see docker-compose 6
+if nginx is not available it will use the build portion of the script and make the build first and then it will run the container
+if you do a docker compose down, it wont delete the image, 
+you have to do docker compise down --rmi local
+
+look at docker compose 7 and the dockerfile for this task
