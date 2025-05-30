@@ -9,3 +9,37 @@ how can we store private info..
 
 solution:swarm mode
 swarm mode is a clustering solution built inside docker
+
+docker info
+it will show swarm status
+good chance it will show deactivate
+
+so do 
+docker swarm init
+
+docker node ls
+it will be marked as leader
+
+docker service command replace the docker run in swarm
+
+docker service create alpine ping 8.8.8.8
+it will give you an id, which is a service id
+docker service ls
+
+docker service ps [id]
+will show the containers for the services
+it will show a node column
+
+docker service update [id] --replicas 3
+docker service ls
+docker service ps
+
+docker container ls
+docker container rm -f <name>.1.<id>
+docker service ls
+docker service ps <id>
+it will show the one that was shutdown
+
+docker service rm <id>
+docker service ls
+docker container ls
