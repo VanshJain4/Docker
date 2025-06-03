@@ -43,3 +43,40 @@ it will show the one that was shutdown
 docker service rm <id>
 docker service ls
 docker container ls
+
+
+for this next section you will need node clusters so multiple machines with docker installed:
+this can be done by:
+play-with-docker.com: only 4 hrs
+docker-machine + virtualbox: need a lot of ram memory to run 3 linux servers
+digital ocean + docker install: paid
+or having different machines with docker installed
+
+we will go with the digital ocean one:
+ssh root@<ip address>
+docker swarm init
+will show error
+
+docker swarm init  --advertise-addr <ip address>
+you will get a join command displayed on the screen
+can take that and paste on to your other machines
+
+docker node ls 
+you can oly use this command as a leader, workers are not allowed 
+
+but you can make others manager by
+docker node update --role manager node2 
+docker node ls
+node2 will now be called reachable
+
+
+you can also start a machine by manager token
+docker swarm join-token manager
+will give you a join command paste it in the other machine
+docker node ls
+
+docker service create --replaces 3 alpine ping 8.8.8.8
+docker service ls
+docker node ps
+docker node ps node 2
+docker service ps <service name>
