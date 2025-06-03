@@ -1,0 +1,114 @@
+we will go with the digital ocean one:
+ssh root@<ip address>
+do this on every machine
+docker swarm init
+will show error
+
+docker swarm init  --advertise-addr <ip address>
+you will get a join command displayed on the screen
+can take that and paste on to your other machines
+
+docker node ls 
+you can oly use this command as a leader, workers are not allowed 
+
+but you can make others manager by
+docker node update --role manager node2 
+docker node ls
+node2 will now be called reachable
+
+
+you can also start a machine by manager token
+docker swarm join-token manager 
+will give you a join command paste it in the other machine
+docker node ls
+
+docker service create --replaces 3 alpine ping 8.8.8.8
+docker service ls
+docker node ps
+docker node ps node 2
+docker service ps <service name>
+
+overlay multi host networking:
+just chose --driver overlay when creating network
+for container to container traffic on network creation
+optional ipsec(aes) encypttion on network creation
+each service can be connected to multiple networks
+
+docker netwrok create --driver overlay mydrupal
+docker network ls
+docker service create --name psql --network mydupal -e POSTGRES_PASSWORD=mypass POSTGRES_PASSWORD
+docker service ls
+docker service ps psql
+docker container logs psql<press tab>
+
+docker service create --name drupal --network mydrupal -p 80:80 drupal
+docker service ls
+docker service ps drupal
+you will see that database is running on node1 and this service on node2
+means everything is conencted and talking to each other
+you will also see that is is running on all 3 ip address
+
+routing mesh:
+routes ingress(incoming) packets for a aservice to proper task
+spans all nodes in swarm
+uses ipvs from linux kernel
+load balances swarm services across their tasks
+two ways this works:
+container to container in a overlay network
+external trafffic incoming to publish ports (all nodes listen)
+
+vip is better than round robin
+
+lets test load balancer properly:
+on node 1
+docker service create --name search --replicas 3 -p 9200:9200 elasticsearch:2
+docker service ps search 
+each task on each node
+curl loaclhost:9200
+do it multiple time syou will see three different names being outputted multiple times
+
+stateless load balancing bw routing mesh and load balancer
+
+
+dockerfile_10
+
+
+stacks:
+docker adds a new layer of abstraction to swarm called stacks
+stacks accept compose files as their declarative definition for service newtworks and volumes
+
+
+node 1:
+docker stack deploy -c docker-compose-voting-app-stack.yml
+docker stack ls
+docker stack ps voteapp
+docker stack services voteapp
+docker network ls
+same  check using ip
+
+
+secret storage
+easiest secure solution for storing secrets in swarm
+username, password, certificates, ssh key, etc
+
+
+docker secret create psql_user psql_user.txt
+echo "myDBpassWORD" | docker secret create psql_pass -
+docker secret ls
+docker secret inspect psql_user
+docker service create --name psql --secret psql_user --secret psql_pass -e POSTGRES_PASSWORD_FILE=/run/secrets/psql_pass -e POSTGRES_USER_FILE=/run/secrets/psql_user postgres
+docker service ps psql
+docker exec -it <container name > bash
+ls /run/secrets
+you can cat the user
+
+docker service ps
+docker service update --secret-rm 
+this command will redeploy the container again
+
+
+docker service create --name search 
+docker stack deploy -c docker-compose.yml mydb
+docker secret ls
+docker stack rm mydb
+
